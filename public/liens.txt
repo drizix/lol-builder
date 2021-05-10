@@ -1,0 +1,15 @@
+splash
+
+http://ddragon.leagueoflegends.com/cdn/img/champion/splash/
+
+champion icone
+
+http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/
+
+item
+
+http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/
+
+sum spell
+
+http://ddragon.leagueoflegends.com/cdn/11.9.1/img/spell/
