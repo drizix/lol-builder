@@ -1,32 +1,26 @@
 <?php
 
-require "../vendor/autoload.php";
+// require "../vendor/autoload.php";
+require __DIR__ . '/../vendor/autoload.php';
 
 use Entity\User;
 use Entity\Build;
 use Entity\Champion;
 use Entity\Item;
+use Entity\Summoner;
+use ludk\Persistence\ORM;
 
-$item1 = new Item;
+$orm = new ORM(__DIR__ . '/../Resources');
+$codeRepoBuild = $orm->getRepository(Build::class);
+$items = $codeRepoBuild->findAll();
+$build = $items[0];
+var_dump($items);
 
-$data = [
-    "build adc",
-    "cesar",
-    "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/Ezreal.png",
-    "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/spell/SummonerFlash.png",
-    "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/spell/SummonerHeal.png",
-    $item1->getImageById(3340),
-    "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3006.png",
-    "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/6671.png",
-    "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/6676.png",
-    "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3031.png",
-    "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3026.png",
-    "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3035.png"
-];
-
-$build = new Build($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6], $data[7], $data[8], $data[9], $data[10], $data[11]);
-
+$codeRepoUser = $orm->getRepository(User::class);
+$itemsUser = $codeRepoUser->findAll();
+$user = $itemsUser[0];
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -86,40 +80,55 @@ $build = new Build($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $
             <button type=button class="btn btn-primary">Ajouter un nouveau build</button>
         </div>
 
-        <div class="shadow row mb-3 rounded-3" style="background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ezreal_0.jpg'); background-position-y: 40%; background-size: 100%;">
-            <div class="col-2">
+        <div class="card">
+            <div class="shadow card-header">
                 <div class="row">
-                    <div class="col-8"><img class="img-fluid rounded" src=<?php echo $build->champion ?> alt="">
+                    <div class="col-2">
+                        <h2><?php echo $build->creator ?></h2>
                     </div>
-                    <div class="col-4 d-flex flex-column justify-content-around">
-                        <div class="row text-center"><img src=<?php echo $build->summonerSpell1 ?> alt="">
-                        </div>
-                        <div class="row text-center"><img src=<?php echo $build->summonerSpell2 ?> alt="">
-                        </div>
+                    <div class="col-10">
+                        <h3 class="text-center"><?php echo $build->name ?></h3>
                     </div>
                 </div>
+
             </div>
-            <div class="col-10 d-flex justify-content-around align-items-center bg-image">
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src=<?php echo $build->item1 ?> alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src=<?php echo $build->item2 ?> alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src=<?php echo $build->item3 ?> alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src=<?php echo $build->item4 ?> alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src=<?php echo $build->item5 ?> alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src=<?php echo $build->item6 ?> alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src=<?php echo $build->item7 ?> alt="">
+            <div class="shadow card-body" style="background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ezreal_0.jpg'); background-position-y: 40%; background-size: 100%;">
+                <div class="row">
+                    <div class="col-2">
+                        <div class="row">
+                            <div class="col-8"><img class="img-fluid rounded" src=<?php echo $build->champion ?> alt="">
+                            </div>
+                            <div class="col-4 d-flex flex-column justify-content-around">
+                                <div class="row text-center"><img src=<?php echo $build->summonerSpell1 ?> alt="">
+                                </div>
+                                <div class="row text-center"><img src=<?php echo $build->summonerSpell2 ?> alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-10 d-flex justify-content-around align-items-center bg-image">
+                        <div class="col-1 d-flex justify-content-around align-items-center">
+                            <img class="img-thumbnail" src=<?php echo $build->item1 ?> alt="">
+                        </div>
+                        <div class="col-1 d-flex justify-content-around align-items-center">
+                            <img class="img-thumbnail" src=<?php echo $build->item2 ?> alt="">
+                        </div>
+                        <div class="col-1 d-flex justify-content-around align-items-center">
+                            <img class="img-thumbnail" src=<?php echo $build->item3 ?> alt="">
+                        </div>
+                        <div class="col-1 d-flex justify-content-around align-items-center">
+                            <img class="img-thumbnail" src=<?php echo $build->item4 ?> alt="">
+                        </div>
+                        <div class="col-1 d-flex justify-content-around align-items-center">
+                            <img class="img-thumbnail" src=<?php echo $build->item5 ?> alt="">
+                        </div>
+                        <div class="col-1 d-flex justify-content-around align-items-center">
+                            <img class="img-thumbnail" src=<?php echo $build->item6 ?> alt="">
+                        </div>
+                        <div class="col-1 d-flex justify-content-around align-items-center">
+                            <img class="img-thumbnail" src=<?php echo $build->item7 ?> alt="">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -195,7 +204,7 @@ $build = new Build($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $
                     <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3157.png" alt="">
                 </div>
                 <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3109.png" alt="">
+                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/1035.png" alt="">
                 </div>
             </div>
         </div>

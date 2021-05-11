@@ -1,0 +1,47 @@
+[
+    {
+        "name": "build adc carry",
+        "creator": "Drizix",
+        "champion": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/Ezreal.png",
+        "splash": "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ezreal_0.jpg",
+        "summonerSpell1": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/spell/SummonerFlash.png",
+        "summonerSpell2": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/spell/SummonerHeal.png",
+        "item1": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3340.png",
+        "item2": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3006.png",
+        "item3": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/6671.png",
+        "item4": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/6676.png",
+        "item5": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3031.png",
+        "item6": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3026.png",
+        "item7": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3035.png"
+    },
+    {
+        "name": "build ap carry",
+        "creator": "Drizix",
+        "champion": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/Syndra.png",
+        "splash": "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Syndra_0.jpg",
+        "summonerSpell1": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/spell/SummonerFlash.png",
+        "summonerSpell2": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/spell/SummonerDot.png",
+        "item1": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3340.png",
+        "item2": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3020.png",
+        "item3": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/6655.png",
+        "item4": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3089.png",
+        "item5": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3135.png",
+        "item6": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3157.png",
+        "item7": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/1035.png"
+    },
+    {
+        "name": "build de Gwen top",
+        "creator": "Aigash",
+        "champion": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/Gwen.png",
+        "splash": "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Gwen_0.jpg",
+        "summonerSpell1": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/spell/SummonerFlash.png",
+        "summonerSpell2": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/spell/SummonerTeleport.png",
+        "item1": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3340.png",
+        "item2": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3047.png",
+        "item3": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/4633.png",
+        "item4": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3115.png",
+        "item5": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3157.png",
+        "item6": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3089.png",
+        "item7": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3135.png"
+    }
+]
