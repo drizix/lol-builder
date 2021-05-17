@@ -1,6 +1,17 @@
 [
     {
+        "id": 1,
         "nickname": "Drizix",
         "password": "1234"
+    },
+    {
+        "id": 2,
+        "nickname": "JeSuisUnUser",
+        "password": "pwd1"
+    },
+    {
+        "id": 3,
+        "nickname": "toto",
+        "password": "tutu"
     }
 ]

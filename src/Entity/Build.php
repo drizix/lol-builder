@@ -8,7 +8,7 @@ class Build
 {
     public $id;
     public $name;
-    public $creator;
+    public User $user;
     public $champion;
     public $splash;
     public $summonerSpell1;
@@ -20,6 +20,7 @@ class Build
     public $item5;
     public $item6;
     public $item7;
+
     use Serializer;
 
     // function __construct($name, $creator, $champion, $summonerSpell1, $summonerSpell2, $item1, $item2, $item3, $item4, $item5, $item6, $item7)

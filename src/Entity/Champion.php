@@ -7,13 +7,14 @@ use ludk\Persistence\ORM;
 
 class Champion
 {
-    private $id;
+    public $id;
     private $type;
     private $format;
     private $version;
     private $data;
     use Serializer;
 
+    // output : array
     function getAllChampionArray()
     {
         $championArray = [];
@@ -25,7 +26,19 @@ class Champion
         foreach ($data as $champ) {
             array_push($championArray, $champ['name']);
         };
-
         return $championArray;
+    }
+
+    // input : array | output : string
+    function createMenuChampion($array)
+    {
+        $result = "";
+        $result .= "<select>";
+        foreach ($array as $key) {
+            $result .= "<option>" . $key . "</option>";
+        }
+        $result .= "</select>";
+
+        return $result;
     }
 }

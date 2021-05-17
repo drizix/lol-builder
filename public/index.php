@@ -3,6 +3,8 @@
 // require "../vendor/autoload.php";
 require __DIR__ . '/../vendor/autoload.php';
 
+session_start();
+
 use Entity\User;
 use Entity\Build;
 use Entity\Champion;
@@ -13,12 +15,15 @@ use ludk\Persistence\ORM;
 $orm = new ORM(__DIR__ . '/../Resources');
 $codeRepoBuild = $orm->getRepository(Build::class);
 $items = $codeRepoBuild->findAll();
-$build = $items[0];
-var_dump($items);
+// $build = $items[0];
+// var_dump($items);
 
-$codeRepoUser = $orm->getRepository(User::class);
-$itemsUser = $codeRepoUser->findAll();
-$user = $itemsUser[0];
+// var_dump($c->getAllChampionArray());
+$c = new Champion();
+// echo $c->createMenuChampion($c->getAllChampionArray());
+// $codeRepoUser = $orm->getRepository(User::class);
+// $itemsUser = $codeRepoUser->findAll();
+// $user = $itemsUser[0];
 ?>
 
 <!DOCTYPE html>
@@ -79,249 +84,60 @@ $user = $itemsUser[0];
         <div class="row mb-5">
             <button type=button class="btn btn-primary">Ajouter un nouveau build</button>
         </div>
+        <?php foreach ($items as $build) { ?>
+            <div class="card mb-5">
+                <div class="shadow card-header">
+                    <div class="row">
+                        <div class="col-2">
+                            <h2><?php echo $build->user->nickname ?></h2>
+                        </div>
+                        <div class="col-10">
+                            <h3 class="text-center"><?php echo $build->name ?></h3>
+                        </div>
+                    </div>
 
-        <div class="card">
-            <div class="shadow card-header">
-                <div class="row">
-                    <div class="col-2">
-                        <h2><?php echo $build->creator ?></h2>
-                    </div>
-                    <div class="col-10">
-                        <h3 class="text-center"><?php echo $build->name ?></h3>
-                    </div>
                 </div>
-
-            </div>
-            <div class="shadow card-body" style="background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ezreal_0.jpg'); background-position-y: 40%; background-size: 100%;">
-                <div class="row">
-                    <div class="col-2">
-                        <div class="row">
-                            <div class="col-8"><img class="img-fluid rounded" src=<?php echo $build->champion ?> alt="">
-                            </div>
-                            <div class="col-4 d-flex flex-column justify-content-around">
-                                <div class="row text-center"><img src=<?php echo $build->summonerSpell1 ?> alt="">
+                <div class="shadow card-body" style="background-image: url('<?php echo $build->splash ?>'); background-position-y: 40%; background-size: 100%;">
+                    <div class="row">
+                        <div class="col-2">
+                            <div class="row">
+                                <div class="col-8"><img class="img-fluid rounded" src=<?php echo $build->champion ?> alt="">
                                 </div>
-                                <div class="row text-center"><img src=<?php echo $build->summonerSpell2 ?> alt="">
+                                <div class="col-4 d-flex flex-column justify-content-around">
+                                    <div class="row text-center"><img src=<?php echo $build->summonerSpell1 ?> alt="">
+                                    </div>
+                                    <div class="row text-center"><img src=<?php echo $build->summonerSpell2 ?> alt="">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-10 d-flex justify-content-around align-items-center bg-image">
-                        <div class="col-1 d-flex justify-content-around align-items-center">
-                            <img class="img-thumbnail" src=<?php echo $build->item1 ?> alt="">
-                        </div>
-                        <div class="col-1 d-flex justify-content-around align-items-center">
-                            <img class="img-thumbnail" src=<?php echo $build->item2 ?> alt="">
-                        </div>
-                        <div class="col-1 d-flex justify-content-around align-items-center">
-                            <img class="img-thumbnail" src=<?php echo $build->item3 ?> alt="">
-                        </div>
-                        <div class="col-1 d-flex justify-content-around align-items-center">
-                            <img class="img-thumbnail" src=<?php echo $build->item4 ?> alt="">
-                        </div>
-                        <div class="col-1 d-flex justify-content-around align-items-center">
-                            <img class="img-thumbnail" src=<?php echo $build->item5 ?> alt="">
-                        </div>
-                        <div class="col-1 d-flex justify-content-around align-items-center">
-                            <img class="img-thumbnail" src=<?php echo $build->item6 ?> alt="">
-                        </div>
-                        <div class="col-1 d-flex justify-content-around align-items-center">
-                            <img class="img-thumbnail" src=<?php echo $build->item7 ?> alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="shadow row mb-3 rounded-3" style="background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lucian_0.jpg'); background-position-y: 40%; background-size: 100%;">
-            <div class="col-2">
-                <div class="row">
-                    <div class="col-8"><img class="img-fluid rounded" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/Lucian.png" alt="">
-                    </div>
-                    <div class="col-4 d-flex flex-column justify-content-around">
-                        <div class="row text-center"><img src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/spell/SummonerFlash.png" alt="">
-                        </div>
-                        <div class="row text-center"><img src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/spell/SummonerHeal.png" alt="">
+                        <div class="col-10 d-flex justify-content-around align-items-center bg-image">
+                            <div class="col-1 d-flex justify-content-around align-items-center">
+                                <img class="img-thumbnail" src=<?php echo $build->item1 ?> alt="">
+                            </div>
+                            <div class="col-1 d-flex justify-content-around align-items-center">
+                                <img class="img-thumbnail" src=<?php echo $build->item2 ?> alt="">
+                            </div>
+                            <div class="col-1 d-flex justify-content-around align-items-center">
+                                <img class="img-thumbnail" src=<?php echo $build->item3 ?> alt="">
+                            </div>
+                            <div class="col-1 d-flex justify-content-around align-items-center">
+                                <img class="img-thumbnail" src=<?php echo $build->item4 ?> alt="">
+                            </div>
+                            <div class="col-1 d-flex justify-content-around align-items-center">
+                                <img class="img-thumbnail" src=<?php echo $build->item5 ?> alt="">
+                            </div>
+                            <div class="col-1 d-flex justify-content-around align-items-center">
+                                <img class="img-thumbnail" src=<?php echo $build->item6 ?> alt="">
+                            </div>
+                            <div class="col-1 d-flex justify-content-around align-items-center">
+                                <img class="img-thumbnail" src=<?php echo $build->item7 ?> alt="">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-10 d-flex justify-content-around align-items-center bg-image">
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3340.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3006.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/6671.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/6676.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3031.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3026.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3035.png" alt="">
-                </div>
-            </div>
-        </div>
-
-        <div class="shadow row mb-3 rounded-3" style="background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Syndra_0.jpg'); background-position-y: 20%; background-size: 100%;">
-            <div class=" col-2">
-                <div class="row">
-                    <div class="col-8"><img class="img-fluid rounded" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/Syndra.png" alt="">
-                    </div>
-                    <div class="col-4 d-flex flex-column justify-content-around">
-                        <div class="row text-center"><img src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/spell/SummonerFlash.png" alt="">
-                        </div>
-                        <div class="row text-center"><img src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/spell/SummonerDot.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-10 d-flex justify-content-around align-items-center bg-image">
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3340.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3020.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/6655.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3089.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3135.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3157.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/1035.png" alt="">
-                </div>
-            </div>
-        </div>
-
-        <div class="shadow row mb-3 rounded-3" style="background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Caitlyn_0.jpg'); background-position-y: 20%; background-size: 100%;">
-            <div class="col-2">
-                <div class="row">
-                    <div class="col-8"><img class="img-fluid rounded" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/Caitlyn.png" alt="">
-                    </div>
-                    <div class="col-4 d-flex flex-column justify-content-around">
-                        <div class="row text-center"><img src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/spell/SummonerFlash.png" alt="">
-                        </div>
-                        <div class="row text-center"><img src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/spell/SummonerHeal.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-10 d-flex justify-content-around align-items-center bg-image">
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3340.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3006.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/6671.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/6676.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3031.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3026.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3035.png" alt="">
-                </div>
-            </div>
-        </div>
-
-        <div class="shadow row mb-3 rounded-3" style="background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jinx_0.jpg'); background-position-y: 20%; background-size: 100%;">
-            <div class="col-2">
-                <div class="row">
-                    <div class="col-8"><img class="img-fluid rounded" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/Jinx.png" alt="">
-                    </div>
-                    <div class="col-4 d-flex flex-column justify-content-around">
-                        <div class="row text-center"><img src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/spell/SummonerFlash.png" alt="">
-                        </div>
-                        <div class="row text-center"><img src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/spell/SummonerHeal.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-10 d-flex justify-content-around align-items-center bg-image">
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3340.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3006.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/6671.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/6676.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3031.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3026.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3035.png" alt="">
-                </div>
-            </div>
-        </div>
-
-        <div class="shadow row mb-3 rounded-3" style="background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Draven_0.jpg'); background-position-y: 30%; background-size: 100%;">
-            <div class="col-2">
-                <div class="row">
-                    <div class="col-8"><img class="img-fluid rounded" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/Draven.png" alt="">
-                    </div>
-                    <div class="col-4 d-flex flex-column justify-content-around">
-                        <div class="row text-center"><img src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/spell/SummonerFlash.png" alt="">
-                        </div>
-                        <div class="row text-center"><img src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/spell/SummonerHeal.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-10 d-flex justify-content-around align-items-center bg-image">
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3340.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3006.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/6671.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/6676.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3031.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3026.png" alt="">
-                </div>
-                <div class="col-1 d-flex justify-content-around align-items-center">
-                    <img class="img-thumbnail" src="http://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/3035.png" alt="">
-                </div>
-            </div>
-        </div>
+        <?php } ?>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
