@@ -6,12 +6,27 @@
     },
     {
         "id": 2,
-        "nickname": "JeSuisUnUser",
-        "password": "pwd1"
+        "nickname": "Laperoh",
+        "password": "pwd2"
     },
     {
         "id": 3,
-        "nickname": "toto",
-        "password": "tutu"
+        "nickname": "Aigash",
+        "password": "pwd3"
+    },
+    {
+        "id": 4,
+        "nickname": "Irysia",
+        "password": "pwd4"
+    },
+    {
+        "id": 5,
+        "nickname": "Jungledif",
+        "password": "pwd5"
+    },
+    {
+        "id": 6,
+        "nickname": "ZackDev",
+        "password": "pwd6"
     }
 ]
