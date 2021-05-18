@@ -17,6 +17,8 @@ class User
         $ORM = new ORM(__DIR__ . '/../../Resources');
         $userRepo = $ORM->getRepository(User::class);
         $user = $userRepo->findBy(array("id" => $id));
-        return $user[0]->nickname;
+        $this->nickname = $user[0]->nickname;
+        return $this->nickname;
+        // return $user[0]->nickname;
     }
 }

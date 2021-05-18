@@ -1,9 +1,16 @@
 <?php
 
+use Entity\Champion;
+use Entity\Item;
+use Entity\Summoner;
 use Entity\User;
 
 $userInfo = new User();
+$championInfo = new Champion();
+$itemInfo = new Item();
+$summonerInfo = new Summoner();
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -56,7 +63,7 @@ $userInfo = new User();
                                 <input class="form-control me-2" type="text" placeholder="mot de passe" name="password">
                             </li>
                             <li class="nav-item">
-                                <button class="btn btn-outline-success" type="submit">Connexion</button>
+                                <button class="btn btn-outline-success " type="submit">Connexion</button>
                                 <?php
                                 if (isset($errorMsg)) {
                                     echo "<script>alert(\"$errorMsg\")</script>";
@@ -81,65 +88,25 @@ $userInfo = new User();
         </div>
     </header>
     <main class="container mt-5 mb-5">
-        <?php if (isset($_SESSION['userId'])) { ?>
-            <div class="row mb-5">
-                <a class="btn btn-primary" href="?action=new">Ajouter un nouveau build</a>
-            </div>
-        <?php } ?>
-        <?php foreach ($items as $build) { ?>
-            <div class="card mb-5">
-                <div class="shadow card-header">
-                    <div class="row">
-                        <div class="col-2">
-                            <h2><?php echo $build->user->nickname ?></h2>
-                        </div>
-                        <div class="col-10">
-                            <h3 class="text-center"><?php echo $build->nameBuild ?></h3>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="shadow card-body" style="background-image: url('<?php echo $build->splash ?>'); background-position-y: 30%; background-size: 100%;">
-                    <div class="row">
-                        <div class="col-2">
-                            <div class="row">
-                                <div class="col-8"><img class="img-fluid rounded" src=<?php echo $build->champion ?> alt="">
-                                </div>
-                                <div class="col-4 d-flex flex-column justify-content-around">
-                                    <div class="row text-center"><img src=<?php echo $build->summonerSpell1 ?> alt="">
-                                    </div>
-                                    <div class="row text-center"><img src=<?php echo $build->summonerSpell2 ?> alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-10 d-flex justify-content-around align-items-center bg-image">
-                            <div class="col-1 d-flex justify-content-around align-items-center">
-                                <img class="img-thumbnail" src=<?php echo $build->item1 ?> alt="">
-                            </div>
-                            <div class="col-1 d-flex justify-content-around align-items-center">
-                                <img class="img-thumbnail" src=<?php echo $build->item2 ?> alt="">
-                            </div>
-                            <div class="col-1 d-flex justify-content-around align-items-center">
-                                <img class="img-thumbnail" src=<?php echo $build->item3 ?> alt="">
-                            </div>
-                            <div class="col-1 d-flex justify-content-around align-items-center">
-                                <img class="img-thumbnail" src=<?php echo $build->item4 ?> alt="">
-                            </div>
-                            <div class="col-1 d-flex justify-content-around align-items-center">
-                                <img class="img-thumbnail" src=<?php echo $build->item5 ?> alt="">
-                            </div>
-                            <div class="col-1 d-flex justify-content-around align-items-center">
-                                <img class="img-thumbnail" src=<?php echo $build->item6 ?> alt="">
-                            </div>
-                            <div class="col-1 d-flex justify-content-around align-items-center">
-                                <img class="img-thumbnail" src=<?php echo $build->item7 ?> alt="">
-                            </div>
-                        </div>
-                    </div>
+        <div class="row justify-content-center">
+            <div class="col-4 justify-content-center">
+                <div class="row justify-content-center">
+                    <form action="?action=new" method="POST">
+                        <input type="text" class="form-control" placeholder="Votre nom de build" name="nameBuild">
+                        <?php
+                        echo $championInfo->createMenuChampion();
+                        for ($i = 1; $i < 3; $i++) {
+                            echo $summonerInfo->createMenuSummoner($i);
+                        }
+                        for ($i = 1; $i < 8; $i++) {
+                            echo $itemInfo->createMenuItem($i);
+                        }
+                        ?>
+                        <button type="submit" class="btn btn-primary my-2">Ajouter mon build</button>
+                    </form>
                 </div>
             </div>
-        <?php } ?>
+        </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>

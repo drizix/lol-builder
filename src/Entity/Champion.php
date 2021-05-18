@@ -30,15 +30,33 @@ class Champion
     }
 
     // input : array | output : string
-    function createMenuChampion($array)
+    function createMenuChampion()
     {
+        $url = "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/";
+
+        $orm = new ORM(__DIR__ . '/../Resources');
+        $codeRepo = $orm->getRepository(Champion::class);
+        $items = $codeRepo->findAll();
+        $data = $items[0]->data;
         $result = "";
-        $result .= "<select>";
-        foreach ($array as $key) {
-            $result .= "<option>" . $key . "</option>";
+        $result .= "<select class=\"form-select\" id=\"champion\" name=\"champion\" aria-label=\"Default select example\">";
+        $result .= "<option selected>choisissez votre champion</option>";
+        foreach ($data as $key) {
+            $endUrl = $key['image']['full'];
+            $fullUrl = $url . $endUrl;
+            $result .= "<option value=\"" . $fullUrl . "\">" . $key['name'] . "</option>";
         }
         $result .= "</select>";
 
         return $result;
+    }
+
+    function getchampionSplashUrlByName($name)
+    {
+
+        $route = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/";
+        $newUrl = str_replace("http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/", $route, $name);
+        $newUrlExt = str_replace(".png", "_0.jpg", $newUrl);
+        return $newUrlExt;
     }
 }

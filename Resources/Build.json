@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "name": "build adc carry",
+        "nameBuild": "build adc carry",
         "user": 1,
         "champion": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/Kaisa.png",
         "splash": "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Kaisa_0.jpg",
@@ -17,7 +17,7 @@
     },
     {
         "id": 2,
-        "name": "Nocturne mid !",
+        "nameBuild": "Nocturne mid !",
         "user": 2,
         "champion": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/Nocturne.png",
         "splash": "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Nocturne_0.jpg",
@@ -33,7 +33,7 @@
     },
     {
         "id": 3,
-        "name": "build de Gwen top",
+        "nameBuild": "build de Gwen top",
         "user": 3,
         "champion": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/Gwen.png",
         "splash": "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Gwen_0.jpg",
@@ -49,7 +49,7 @@
     },
     {
         "id": 4,
-        "name": "Morgana full ap support ftw",
+        "nameBuild": "Morgana full ap support ftw",
         "user": 4,
         "champion": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/Morgana.png",
         "splash": "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Morgana_0.jpg",
@@ -65,7 +65,7 @@
     },
     {
         "id": 5,
-        "name": "Jungle diff tu va faire quoi maintenant !",
+        "nameBuild": "Jungle diff tu va faire quoi maintenant !",
         "user": 5,
         "champion": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/XinZhao.png",
         "splash": "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/XinZhao_0.jpg",
@@ -81,7 +81,7 @@
     },
     {
         "id": 6,
-        "name": "Un jour je reviendrais sur la faille pour tous les one shoot !",
+        "nameBuild": "Un jour je reviendrais sur la faille pour tous les one shoot !",
         "user": 6,
         "champion": "http://ddragon.leagueoflegends.com/cdn/11.9.1/img/champion/Zed.png",
         "splash": "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Zed_0.jpg",

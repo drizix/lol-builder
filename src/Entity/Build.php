@@ -7,7 +7,7 @@ use ludk\Utils\Serializer;
 class Build
 {
     public $id;
-    public $name;
+    public $nameBuild;
     public User $user;
     public $champion;
     public $splash;

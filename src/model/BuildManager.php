@@ -16,3 +16,7 @@ if (isset($_GET['search'])) {
 } else {
     $items = $buildRepo->findAll();
 }
+
+function createNewBuild($userId, $buildId)
+{
+}
