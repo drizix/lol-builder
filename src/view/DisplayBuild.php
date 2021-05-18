@@ -1,3 +1,10 @@
+<?php
+
+use Entity\User;
+
+$userInfo = new User();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -23,26 +30,47 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Accueil</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#"><?php if (isset($_SESSION['userId'])) {
+                                                                                    echo "Bienvenue " . $userInfo->getNicknameById($_SESSION['userId']);
+                                                                                } ?> </a>
+                    </li>
                 </ul>
                 <form class="d-flex" action="index.php" method="get">
                     <input class="form-control me-2" type="text" placeholder="Recherche" name="search">
                     <button class="btn btn-outline-secondary mx-1" type="submit">Recherche</button>
                 </form>
-                <form action="index.php" method="POST">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <input class="form-control me-2" type="text" placeholder="nom" name="username">
-                        </li>
-                        <li class="nav-item">
-                            <input class="form-control me-2" type="text" placeholder="mot de passe" name="password">
-                        </li>
-                        <li class="nav-item">
-                            <button class="btn btn-outline-success " type="submit" href="?action=login">Connexion</button>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="?action=register" role="button">Inscription</a>
-                        </li>
-                    </ul>
+                <form action="?action=login" method="POST">
+                    <?php
+                    if (isset($_SESSION['userId'])) {
+                    ?>
+                        <a href="?action=logout" class="btn btn-danger active" role="button" aria-pressed="true" id="logout-btn">Deconnexion</a>
+                    <?php
+                    } else {
+                    ?>
+
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <input class="form-control me-2" type="text" placeholder="nom" name="username">
+                            </li>
+                            <li class="nav-item">
+                                <input class="form-control me-2" type="text" placeholder="mot de passe" name="password">
+                            </li>
+                            <li class="nav-item">
+                                <button class="btn btn-outline-success " type="submit">Connexion</button>
+                                <?php
+                                if (isset($errorMsg)) {
+                                    echo "<script>alert(\"$errorMsg\")</script>";
+                                }
+                                ?>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="?action=register" role="button">Inscription</a>
+                            </li>
+                        </ul>
+                    <?php
+                    }
+                    ?>
                 </form>
 
             </div>
