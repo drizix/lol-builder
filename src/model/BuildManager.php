@@ -2,8 +2,8 @@
 include_once "ORM.php";
 
 $items = array();
-if (isset($_GET['search'])) {
-    $strToSearch = $_GET['search'];
+if (($request->query->has('search'))) {
+    $strToSearch = $request->query->get('search');
     if (strpos($strToSearch, "@") === 0) {
         $userName = substr($strToSearch, 1);
         $users = $userRepo->findBy(array("nickname" => $userName));
