@@ -32,7 +32,10 @@ class ContentController
 
             $newBuild->champion = $_POST['champion'];
             $newBuild->nameBuild = $_POST['nameBuild'];
+
+            $infoUser->getNicknameById($_SESSION['userId']);
             $newBuild->user = $infoUser;
+
             $newBuild->splash = $newChampion->getchampionSplashUrlByName($_POST['champion']);
             $newBuild->summonerSpell1 = $_POST['summonerSpell1'];
             $newBuild->summonerSpell2 = $_POST['summonerSpell2'];
