@@ -6,7 +6,9 @@ use Controller\HomeController;
 use Controller\AuthController;
 use Controller\ContentController;
 
-$action = $_GET["action"] ?? "display";
+// $action = $_GET["action"] ?? "display";
+$action = substr(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), 1);
+
 switch ($action) {
     case 'register':
         $controller = new AuthController();
@@ -22,7 +24,7 @@ switch ($action) {
         break;
     case 'new':
         $controller = new ContentController();
-        $controller->new();
+        $controller->create();
         break;
     case 'display':
     default:

@@ -12,7 +12,7 @@ class AuthController
             $userId = GetUserIdFromUserAndPassword($_POST['username'], $_POST['password']);
             if ($userId > 0) {
                 $_SESSION['userId'] = $userId;
-                header('Location: ?action=display');
+                header('Location: display');
             } else {
                 $errorMsg = "Wrong login and/or password.";
                 include "../src/view/DisplayBuild.php";
@@ -29,7 +29,7 @@ class AuthController
         if (isset($_SESSION['userId'])) {
             unset($_SESSION['userId']);
         }
-        header('Location: ?action=display');
+        header('Location: display');
     }
 
     public function register()
@@ -51,7 +51,7 @@ class AuthController
             } else {
                 $userId = CreateNewUser($_POST['username'], $_POST['password']);
                 $_SESSION['userId'] = $userId;
-                header('Location: ?action=display');
+                header('Location: display');
             }
         } else {
             include "../src/view/RegisterForm.php";

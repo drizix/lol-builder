@@ -39,11 +39,11 @@ $userInfo = new User();
                     <input class="form-control me-2" type="text" placeholder="Recherche" name="search">
                     <button class="btn btn-outline-secondary mx-1" type="submit">Recherche</button>
                 </form>
-                <form action="?action=login" method="POST">
+                <form action="login" method="POST">
                     <?php
                     if (isset($_SESSION['userId'])) {
                     ?>
-                        <a href="?action=logout" class="btn btn-danger active" role="button" aria-pressed="true" id="logout-btn">Deconnexion</a>
+                        <a href="logout" class="btn btn-danger active" role="button" aria-pressed="true" id="logout-btn">Deconnexion</a>
                     <?php
                     } else {
                     ?>
@@ -64,7 +64,7 @@ $userInfo = new User();
                                 ?>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="?action=register" role="button">Inscription</a>
+                                <a class="nav-link" href="register" role="button">Inscription</a>
                             </li>
                         </ul>
                     <?php
@@ -83,7 +83,7 @@ $userInfo = new User();
     <main class="container mt-5 mb-5">
         <?php if (isset($_SESSION['userId'])) { ?>
             <div class="row mb-5">
-                <a class="btn btn-primary" href="?action=new">Ajouter un nouveau build</a>
+                <a class="btn btn-primary" href="new">Ajouter un nouveau build</a>
             </div>
         <?php } ?>
         <?php foreach ($items as $build) { ?>

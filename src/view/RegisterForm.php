@@ -37,10 +37,10 @@
                             <input class="form-control me-2" type="text" placeholder="mot de passe" name="password">
                         </li>
                         <li class="nav-item">
-                            <button class="btn btn-outline-success " type="submit" href="?action=login">Connexion</button>
+                            <button class="btn btn-outline-success " type="submit" href="login">Connexion</button>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="?action=register" role="button">Inscription</a>
+                            <a class="nav-link" href="register" role="button">Inscription</a>
                         </li>
                     </ul>
                 </form>
@@ -62,7 +62,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                    <form class="form-signin" method="POST" action="?action=register">
+                    <form class="form-signin" method="POST" action="register">
                         <h2 class="form-signin-heading text-center">Inscription</h2>
                         <?php
                         if (isset($errorMsg)) {

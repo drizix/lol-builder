@@ -46,11 +46,11 @@ $summonerInfo = new Summoner();
                     <input class="form-control me-2" type="text" placeholder="Recherche" name="search">
                     <button class="btn btn-outline-secondary mx-1" type="submit">Recherche</button>
                 </form>
-                <form action="?action=login" method="POST">
+                <form action="login" method="POST">
                     <?php
                     if (isset($_SESSION['userId'])) {
                     ?>
-                        <a href="?action=logout" class="btn btn-danger active" role="button" aria-pressed="true" id="logout-btn">Deconnexion</a>
+                        <a href="logout" class="btn btn-danger active" role="button" aria-pressed="true" id="logout-btn">Deconnexion</a>
                     <?php
                     } else {
                     ?>
@@ -71,7 +71,7 @@ $summonerInfo = new Summoner();
                                 ?>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="?action=register" role="button">Inscription</a>
+                                <a class="nav-link" href="register" role="button">Inscription</a>
                             </li>
                         </ul>
                     <?php
@@ -91,7 +91,7 @@ $summonerInfo = new Summoner();
         <div class="row justify-content-center">
             <div class="col-4 justify-content-center">
                 <div class="row justify-content-center">
-                    <form action="?action=new" method="POST">
+                    <form action="new" method="POST">
                         <input type="text" class="form-control" placeholder="Votre nom de build" name="nameBuild">
                         <?php
                         echo $championInfo->createMenuChampion();

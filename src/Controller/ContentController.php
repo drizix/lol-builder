@@ -8,7 +8,7 @@ use Entity\User;
 
 class ContentController
 {
-    public function new()
+    public function create()
     {
         include "../src/model/UserManager.php";
         include "../src/model/BuildManager.php";
@@ -47,7 +47,7 @@ class ContentController
             $manager->persist($newBuild);
             $manager->flush();
 
-            header('Location: ?action=display');
+            header('Location: display');
         } else {
             include "../src/view/NewBuildForm.php";
         }
