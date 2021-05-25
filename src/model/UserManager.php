@@ -1,25 +1,13 @@
 <?php
 
 use Entity\User;
-
-include_once "ORM.php";
-
-function GetOneUserFromId($id)
-{
-}
-
-function GetAllUsers()
-{
-    global $ORM;
-    $userRepo = $ORM->getRepository(User::class);
-    $user = $userRepo->findAll();
-    var_dump($user);
-}
+use ludk\Persistence\ORM;
 
 function GetUserIdFromUserAndPassword($nickname, $password)
 {
-    global $ORM;
+    $ORM = new ORM(__DIR__ . '/../../Resources');
     $userRepo = $ORM->getRepository(User::class);
+
     $user = $userRepo->findBy(array("nickname" => $nickname, "password" => $password));
 
     if ($user) {
@@ -31,17 +19,16 @@ function GetUserIdFromUserAndPassword($nickname, $password)
 
 function IsNicknameFree($nickname)
 {
-    global $ORM;
+    $ORM = new ORM(__DIR__ . '/../../Resources');
+
     $userRepo = $ORM->getRepository(User::class);
     $user = $userRepo->findBy(array("nickname" => $nickname));
-    var_dump($user);
     return $user;
 }
 
 function CreateNewUser($nickname, $password)
 {
-    global $ORM;
-    // $userRepo = $ORM->getRepository(User::class);
+    $ORM = new ORM(__DIR__ . '/../../Resources');
     $manager = $ORM->getManager();
 
     $newUser = new User();
