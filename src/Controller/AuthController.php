@@ -5,6 +5,7 @@ namespace Controller;
 use ludk\Controller\AbstractController;
 use ludk\Http\Request;
 use ludk\Http\Response;
+use model\UserManager;
 
 class AuthController extends AbstractController
 {
@@ -12,21 +13,25 @@ class AuthController extends AbstractController
     {
         include "../src/model/UserManager.php";
         include "../src/model/BuildManager.php";
+        $userManager = new UserManager;
         if ($request->request->has('username') && $request->request->has('password')) {
-            $userId = GetUserIdFromUserAndPassword($request->request->get('username'), $request->request->get('password'));
+            $userId = $userManager->GetUserIdFromUserAndPassword($request->request->get('username'), $request->request->get('password'));
             if ($userId > 0) {
                 // $_SESSION['userId'] = $userId;
                 $request->getSession()->set('userId', $userId);
                 $this->redirectToRoute("display");
+                $data = ["items" => $items];
+                return $this->render('DisplayBuild.php', $data);
             } else {
 
-                $data = ["errorMsg" => "Wrong login and/or password."];
+                $data = ["errorMsg" => "Wrong login and/or password.", "items" => $items];
                 return $this->render('DisplayBuild.php', $data);
                 // $errorMsg = "Wrong login and/or password.";
                 // include "../src/view/DisplayBuild.php";
             }
         } else {
-            return $this->render('DisplayBuild.php');
+            $data = ["items" => $items];
+            return $this->render('DisplayBuild.php', $data);
             // include "../src/view/DisplayBuild.php";
         }
     }
@@ -42,31 +47,44 @@ class AuthController extends AbstractController
             $request->getSession()->remove('userId');
         };
         $this->redirectToRoute("display");
-        return $this->render('DisplayBuild.php');
+        $data = ["items" => $items];
+        return $this->render('DisplayBuild.php', $data);
     }
 
     public function register(Request $request): Response
     {
         include "../src/model/UserManager.php";
+        include "../src/model/BuildManager.php";
+
+        $userManager = new UserManager;
         if ($request->request->has('username') && $request->request->has('password') && $request->request->has('passwordRetype')) {
             $errorMsg = NULL;
-            if (IsNicknameFree($request->request->get('username'))) {
-                $errorMsg = "Nickname already used.";
+            if ($userManager->IsNicknameFree($request->request->get('username'))) {
+                // $errorMsg = "Nickname already used.";
+                $data = ["errorMsg" => "Nickname already used."];
+                return $this->render('RegisterForm.php', $data);
             } else if ($request->request->get('password') != $request->request->get('passwordRetype')) {
-                $errorMsg = "Passwords are not the same.";
+                $data = ["errorMsg" => "Passwords are not the same."];
+                return $this->render('RegisterForm.php', $data);
             } else if (strlen(trim($request->request->get('password'))) < 8) {
-                $errorMsg = "Your password should have at least 8 characters.";
+                // $errorMsg = "Your password should have at least 8 characters.";
+                $data = ["errorMsg" => "Your password should have at least 8 characters."];
+                return $this->render('RegisterForm.php', $data);
             } else if (strlen(trim($request->request->get('username'))) < 4) {
-                $errorMsg = "Your nickame should have at least 4 characters.";
+                // $errorMsg = "Your nickame should have at least 4 characters.";
+                $data = ["errorMsg" => "Your nickame should have at least 4 characters."];
+                return $this->render('RegisterForm.php', $data);
             }
             if ($errorMsg) {
                 // include "../src/view/RegisterForm.php";
                 return $this->render('RegisterForm.php');
             } else {
-                $userId = CreateNewUser($request->request->get('username'), $request->request->get('password'));
+                $userId = $userManager->CreateNewUser($request->request->get('username'), $request->request->get('password'));
                 $request->getSession()->set('userId', $userId);
                 // $_SESSION['userId'] = $userId;
                 $this->redirectToRoute("display");
+                $data = ["items" => $items];
+                return $this->render('DisplayBuild.php', $data);
             }
         } else {
             // include "../src/view/RegisterForm.php";

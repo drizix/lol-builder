@@ -56,7 +56,9 @@ class ContentController extends AbstractController
             $manager->flush();
 
             // header('Location: /display');
-            $this->redirectToRoute("display");
+            $data = ["items" => $items];
+            return $this->render('DisplayBuild.php', $data);
+            $this->redirectToRoute('display');
         } else {
             // include "../src/view/NewBuildForm.php";
             return $this->render('NewBuildForm.php');

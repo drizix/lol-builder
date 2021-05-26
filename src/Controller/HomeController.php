@@ -12,6 +12,9 @@ class HomeController extends AbstractController
     {
         include "../src/model/BuildManager.php";
         // include "../src/view/DisplayBuild.php";
-        return $this->render('DisplayBuild.php');
+
+        $data = ["items" => $items];
+        //var_dump($data);
+        return $this->render('DisplayBuild.php', $data);
     }
 }

@@ -20,22 +20,22 @@ $userInfo = new User();
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">LOL - Builder</a>
+            <a class="navbar-brand" href="/">LOL - Builder</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+                        <a class="nav-link active" aria-current="page" href="/">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#"><?php if (isset($_SESSION['userId'])) {
-                                                                                    echo "Bienvenue " . $userInfo->getNicknameById($_SESSION['userId']);
-                                                                                } ?> </a>
+                        <div class="nav-link active" aria-current="page"><?php if (isset($_SESSION['userId'])) {
+                                                                                echo "Bienvenue " . $userInfo->getNicknameById($_SESSION['userId']);
+                                                                            } ?> </div>
                     </li>
                 </ul>
-                <form class="d-flex" action="index.php" method="get">
+                <form class="d-flex" action="/" method="get">
                     <input class="form-control me-2" type="text" placeholder="Recherche" name="search">
                     <button class="btn btn-outline-secondary mx-1" type="submit">Recherche</button>
                 </form>
@@ -83,7 +83,7 @@ $userInfo = new User();
     <main class="container mt-5 mb-5">
         <?php if (isset($_SESSION['userId'])) { ?>
             <div class="row mb-5">
-                <a class="btn btn-primary" href="/=new">Ajouter un nouveau build</a>
+                <a class="btn btn-primary" href="/new">Ajouter un nouveau build</a>
             </div>
         <?php } ?>
         <?php foreach ($items as $build) { ?>
