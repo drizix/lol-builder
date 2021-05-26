@@ -1,5 +1,7 @@
 <?php
 
+namespace Controller;
+
 use ludk\Http\Kernel;
 use ludk\Http\Request;
 

@@ -1,4 +1,7 @@
 <?php
+
+namespace model;
+
 include_once "ORM.php";
 
 $items = array();

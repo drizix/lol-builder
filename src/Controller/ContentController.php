@@ -16,7 +16,6 @@ class ContentController extends AbstractController
         include "../src/model/UserManager.php";
         include "../src/model/BuildManager.php";
         if (
-            // isset($_SESSION['userId'])
             $request->getSession()->has('userId')
             && $request->request->has('nameBuild')
             && $request->request->has('champion')
@@ -38,7 +37,6 @@ class ContentController extends AbstractController
             $newBuild->nameBuild = $request->request->get('nameBuild');
 
             $infoUser->getNicknameById($request->getSession()->get('userId'));
-            // $infoUser->getNicknameById($_SESSION['userId']);
             $newBuild->user = $infoUser;
 
             $newBuild->splash = $newChampion->getchampionSplashUrlByName($request->request->get('champion'));
@@ -55,12 +53,10 @@ class ContentController extends AbstractController
             $manager->persist($newBuild);
             $manager->flush();
 
-            // header('Location: /display');
             $data = ["items" => $items];
             return $this->render('DisplayBuild.php', $data);
             $this->redirectToRoute('display');
         } else {
-            // include "../src/view/NewBuildForm.php";
             return $this->render('NewBuildForm.php');
         }
     }

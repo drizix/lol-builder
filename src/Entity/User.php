@@ -19,6 +19,5 @@ class User
         $user = $userRepo->findBy(array("id" => $id));
         $this->nickname = $user[0]->nickname;
         return $this->nickname;
-        // return $user[0]->nickname;
     }
 }

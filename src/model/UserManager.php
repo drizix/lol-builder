@@ -9,9 +9,6 @@ class UserManager extends AbstractController
 {
     function GetUserIdFromUserAndPassword($nickname, $password)
     {
-        // $ORM = new ORM(__DIR__ . '/../../Resources');
-        // $userRepo = $ORM->getRepository(User::class);
-
         $userRepo = $this->getOrm()->getRepository(User::class);
         $user = $userRepo->findBy(array("nickname" => $nickname, "password" => $password));
 
@@ -24,9 +21,6 @@ class UserManager extends AbstractController
 
     function IsNicknameFree($nickname)
     {
-        // $ORM = new ORM(__DIR__ . '/../../Resources');
-        // $userRepo = $ORM->getRepository(User::class);
-
         $userRepo = $this->getOrm()->getRepository(User::class);
 
         $user = $userRepo->findBy(array("nickname" => $nickname));
@@ -35,9 +29,6 @@ class UserManager extends AbstractController
 
     function CreateNewUser($nickname, $password)
     {
-        // $ORM = new ORM(__DIR__ . '/../../Resources');
-        // $manager = $ORM->getManager();
-
         $manager = $this->getOrm()->getManager();
 
         $newUser = new User();
