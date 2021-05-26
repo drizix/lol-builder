@@ -53,7 +53,7 @@ $userInfo = new User();
                                 <input class="form-control me-2" type="text" placeholder="nom" name="username">
                             </li>
                             <li class="nav-item">
-                                <input class="form-control me-2" type="text" placeholder="mot de passe" name="password">
+                                <input class="form-control me-2" type="password" placeholder="mot de passe" name="password">
                             </li>
                             <li class="nav-item">
                                 <button class="btn btn-outline-success" type="submit">Connexion</button>

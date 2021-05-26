@@ -15,8 +15,5 @@ if (($request->query->has('search'))) {
     }
 } else {
     $items = $buildRepo->findAll();
-}
-
-function createNewBuild($userId, $buildId)
-{
+    $items = array_reverse($items);
 }
